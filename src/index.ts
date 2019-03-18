@@ -15,11 +15,11 @@ export class Analytics {
   private viewport: Param<string>;
   private screenResolution: Param<string>;
 
-  constructor(trackId: string, params: InitParams = {}) {
+  constructor(trackId: string, retryInterval: number, params: InitParams = {}) {
     this.trackId = trackId;
     const initParams = { ...getDefaultInitParams(), ...params };
     Object.keys(initParams).forEach(key => (this[key] = initParams[key]));
-    retry(this.send, RETRY);
+    retry(this.send, retryInterval || RETRY);
   }
 
   public send = async (hitType?: string, additionalParams: object = {}) => {
