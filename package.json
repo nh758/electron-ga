@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index",
   "scripts": {
+    "prepare": "npm run build",
     "build": "rimraf lib && tsc",
     "test": "jest"
   },
