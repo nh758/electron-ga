@@ -1,6 +1,6 @@
 import { remote } from 'electron';
 import { machineIdSync } from 'node-machine-id';
-import { CACHE_KEY_NAME } from './consts';
+import { CACHE_KEY_NAME, MAX_CACHE_SIZE } from './consts';
 import { Item } from './types';
 
 export const getAppName = (): string => remote.app.getName();
@@ -28,6 +28,14 @@ export const getCache = (): Item[] => {
 };
 
 export const setCache = (cache: object[]): void => {
+  if(cache.length > MAX_CACHE_SIZE){
+    cache = cache.filter((item) => { return item['t'] !== 'pageview' })
+  }
+  
+  if(cache.length > MAX_CACHE_SIZE){
+    cache = cache.slice(0, MAX_CACHE_SIZE - 1)
+  }
+  
   window.localStorage.setItem(CACHE_KEY_NAME, JSON.stringify(cache));
 };
 
