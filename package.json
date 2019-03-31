@@ -1,6 +1,6 @@
 {
-  "name": "electron-ga",
-  "version": "1.0.7",
+  "name": "intouch-electron-ga",
+  "version": "2.0.0",
   "description": "Google Analytics client for Electron applications",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaystack/electron-ga.git"
+    "url": "git+https://github.com/mostafa-raafat/electron-ga.git"
   },
   "keywords": [
     "google",
@@ -27,9 +27,9 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jaystack/electron-ga/issues"
+    "url": "https://github.com/mostafa-raafat/electron-ga/issues"
   },
-  "homepage": "https://github.com/jaystack/electron-ga#readme",
+  "homepage": "https://github.com/mostafa-raafat/electron-ga#readme",
   "jest": {
     "globals": {
       "window": true,
@@ -50,10 +50,9 @@
     "testEnvironment": "node"
   },
   "peerDependencies": {
-    "electron": "^1.8.2"
+    "electron": "^4.0.0"
   },
   "devDependencies": {
-    "@types/electron": "^1.6.10",
     "@types/jest": "^21.1.8",
     "@types/node": "^8.10.4",
     "jest": "^21.2.1",
