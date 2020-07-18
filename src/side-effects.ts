@@ -1,13 +1,23 @@
 import { remote } from 'electron';
-import { machineIdSync } from 'node-machine-id';
 import { CACHE_KEY_NAME, MAX_CACHE_SIZE } from './consts';
+import { v4 as uuidv4 } from 'uuid';
 import { Item } from './types';
+const Store = require('electron-store');
 
 export const getAppName = (): string => remote.app.getName();
 
 export const getAppVersion = (): string => remote.app.getVersion();
 
-export const getClientId = (): string => machineIdSync();
+export const getClientId = (): string => {
+  const store = new Store();
+  if (store.hasKey('uuid')) {
+    return store.get('uuid');
+  } else {
+    const uuid = uuidv4();
+    store.set('uuid', uuid);
+    return uuid;
+  }
+};
 
 export const getLanguage = (): string => window.navigator.language;
 
@@ -31,11 +41,11 @@ export const setCache = (cache: object[]): void => {
   if(cache.length > MAX_CACHE_SIZE){
     cache = cache.filter((item) => { return item['t'] !== 'pageview' })
   }
-  
+
   if(cache.length > MAX_CACHE_SIZE){
     cache = cache.slice(0, MAX_CACHE_SIZE - 1)
   }
-  
+
   window.localStorage.setItem(CACHE_KEY_NAME, JSON.stringify(cache));
 };
 

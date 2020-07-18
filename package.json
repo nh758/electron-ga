@@ -65,7 +65,8 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "node-machine-id": "^1.1.9",
-    "qs": "^6.5.1"
+    "electron-store": "^6.0.0",
+    "qs": "^6.5.1",
+    "uuid": "^8.2.0"
   }
 }
