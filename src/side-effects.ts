@@ -10,7 +10,7 @@ export const getAppVersion = (): string => remote.app.getVersion();
 
 export const getClientId = (): string => {
   const store = new Store();
-  if (store.hasKey('uuid')) {
+  if (store.has('uuid')) {
     return store.get('uuid');
   } else {
     const uuid = uuidv4();
