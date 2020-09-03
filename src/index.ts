@@ -1,6 +1,6 @@
 import { InitParams, Item, Param } from './types';
 import { getDefaultInitParams, prepareItems, getBatches, sendBatches, resolveParam } from './helpers';
-import { getNow, getCache, setCache, retry } from './side-effects';
+import { getNow, getCache, setCache, retry, deleteUuid } from './side-effects';
 import { BATCH_SIZE, RETRY } from './consts';
 
 export class Analytics {
@@ -50,5 +50,9 @@ export class Analytics {
     };
   }
 }
+
+export const resetClientId = () => {
+  deleteUuid();
+};
 
 export default Analytics;

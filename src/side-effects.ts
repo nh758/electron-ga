@@ -45,3 +45,8 @@ export const setCache = (cache: object[]): void => {
 export const retry = (cb: Function, schedule: number) => setInterval(cb, schedule);
 
 export const fetch = (url, options) => window.fetch(url, options);
+
+export const deleteUuid = () => {
+  const store = new Store();
+  store.delete('uuid');
+}
