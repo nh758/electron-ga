@@ -1,13 +1,24 @@
 import { remote } from 'electron';
-import { machineIdSync } from 'node-machine-id';
+import { v4 as uuidv4 } from 'uuid';
 import { CACHE_KEY_NAME } from './consts';
 import { Item } from './types';
+
+const Store = require('electron-store');
 
 export const getAppName = (): string => remote.app.getName();
 
 export const getAppVersion = (): string => remote.app.getVersion();
 
-export const getClientId = (): string => machineIdSync();
+export const getClientId = (): string => {
+  const store = new Store();
+  if (store.has('uuid')) {
+    return store.get('uuid');
+  } else {
+    const uuid = uuidv4();
+    store.set('uuid', uuid);
+    return uuid;
+  }
+};
 
 export const getLanguage = (): string => window.navigator.language;
 
