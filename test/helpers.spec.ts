@@ -50,13 +50,13 @@ describe('helpers', () => {
 
   describe('getBatches', () => {
     it('slices to one part below BATCH_SIZE', () => {
-      const items = [ { __timestamp: 1 }, { __timestamp: 2 }, { __timestamp: 3 } ];
+      const items = [ { __timestamp: 1, tid: '123' }, { __timestamp: 2, tid: '123' }, { __timestamp: 3, tid: '123' } ];
       expect(getBatches(items, 3)).toEqual([ items ]);
     });
 
     it('slices to one part above BATCH_SIZE', () => {
-      const items = [ { __timestamp: 1 }, { __timestamp: 2 }, { __timestamp: 3 } ];
-      expect(getBatches(items, 2)).toEqual([ [ { __timestamp: 1 }, { __timestamp: 2 } ], [ { __timestamp: 3 } ] ]);
+      const items = [ { __timestamp: 1 , tid: '123'}, { __timestamp: 2 , tid: '123'}, { __timestamp: 3 , tid: '123'} ];
+      expect(getBatches(items, 2)).toEqual([ [ { __timestamp: 1 , tid: '123'}, { __timestamp: 2 , tid: '123'} ], [ { __timestamp: 3 , tid: '123'} ] ]);
     });
   });
 
